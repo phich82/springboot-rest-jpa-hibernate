@@ -1,80 +1,54 @@
 package com.maison.demo.models;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
-public class Contact {
-    @NotBlank(message = "Name is required.")
-    @Size(min = 3, message = "Name must be at least 3 characters long.")
+@Entity
+@Table(name = "contact")
+public class Contact extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "contact_id")
+    private Integer contactId;
+
+    @NotBlank(message="Name must not be blank")
+    @Size(min=3, message="Name must be at least 3 characters long")
+    @Column(name = "name")
     private String name;
 
-    @NotBlank(message = "Mobile number is required.")
-    @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits.")
+    @NotBlank(message="Mobile number must not be blank")
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+    @Column(name = "mobile_num")
     private String mobileNum;
 
-    @NotBlank(message = "Email is required.")
-    @Email(message = "Email is invalid.")
+    @NotBlank(message="Email must not be blank")
+    @Email(message = "Please provide a valid email address")
+    @Column(name = "email")
     private String email;
 
-    @NotBlank(message = "Subject is required.")
-    @Size(min = 5, message = "Subject must be at least 5 characters long.")
+    @NotBlank(message="Subject must not be blank")
+    @Size(min=5, message="Subject must be at least 5 characters long")
+    @Column(name = "subject")
     private String subject;
 
-    @NotBlank(message = "Message is required.")
-    @Size(min = 10, message = "Message must be at least 10 characters long.")
+    @NotBlank(message="Message must not be blank")
+    @Size(min=10, message="Message must be at least 10 characters long")
+    @Column(name = "message")
     private String message;
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getMobileNum() {
-//        return mobileNum;
-//    }
-//
-//    public void setMobileNum(String mobileNum) {
-//        this.mobileNum = mobileNum;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getSubject() {
-//        return subject;
-//    }
-//
-//    public void setSubject(String subject) {
-//        this.subject = subject;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public void setMessage(String message) {
-//        this.message = message;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Contact{" +
-//                "name='" + name + '\'' +
-//                ", mobileNum='" + mobileNum + '\'' +
-//                ", email='" + email + '\'' +
-//                ", subject='" + subject + '\'' +
-//                ", message='" + message + '\'' +
-//                '}';
-//    }
+    @Column(name = "status")
+    private String status;
 }

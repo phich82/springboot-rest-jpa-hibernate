@@ -1,7 +1,6 @@
 package com.maison.demo.controllers;
 
 import com.maison.demo.models.User;
-import com.maison.demo.services.HolidayService;
 import com.maison.demo.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class UserController {
 
     @GetMapping
     public String index() {
-        return "index.html";
+        return "users/index.html";
     }
 
     @GetMapping("create")

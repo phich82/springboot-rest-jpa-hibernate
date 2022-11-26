@@ -1,10 +1,8 @@
 package com.maison.demo.services;
 
 import com.maison.demo.constants.Constant;
-import com.maison.demo.models.Holiday;
 import com.maison.demo.models.Role;
 import com.maison.demo.models.User;
-import com.maison.demo.repositories.HolidayRepository;
 import com.maison.demo.repositories.RoleRepository;
 import com.maison.demo.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 @Slf4j
 @Service
